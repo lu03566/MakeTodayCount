@@ -21,6 +21,5 @@ Route::get('/tasks', function () {
 
 	$allTasks = DB::table('tasks')->get();
 
-
     return $allTasks;
 });
