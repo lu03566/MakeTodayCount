@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import Task from './components/Task';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import Example from './components/Example';
+import TaskDetail from './components/TaskDetail';
+
 
 function Index() {
     return (
@@ -14,6 +16,7 @@ function Index() {
 
                     <Route path="/" exact component={Example}/>
                     <Route path="/task" exact component={Task}/>
+                    <Route path="/task/:id" exact render={props => <TaskDetail{...props}/> }/>
                 </div>
             </Router>
         </div>

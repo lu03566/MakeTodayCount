@@ -49,7 +49,12 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        $taskDetail = Task::where('id',$id)
+                          ->where('email','lu.03566@gmail.com')->first();
+        if($taskDetail)
+        {
+            return response()->json($taskDetail);
+        } 
     }
 
     /**

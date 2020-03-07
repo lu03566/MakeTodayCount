@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
+
 
 function Task() {
 
@@ -40,7 +42,11 @@ function Task() {
 
     return (
         <div className="container">
-            {tasks.map(blog => <li key={blog.id}>{blog.task_body}</li>)}
+            {tasks.map(blog => 
+                <li>
+                    <Link to={"/task/"+blog.id}>{blog.task_name} </Link>
+                </li>
+            )}
         </div>
     );
 }
