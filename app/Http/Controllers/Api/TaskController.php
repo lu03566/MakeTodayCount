@@ -39,6 +39,13 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         //
+        $task = new Task();
+
+        $task->task_name = $request->name;
+        $task->task_body = $request->body;
+        $task->email = "lu.03566@gmail.com";
+        $task->save();
+
     }
 
     /**

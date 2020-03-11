@@ -70384,6 +70384,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _components_Example__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js");
 /* harmony import */ var _components_TaskDetail__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/TaskDetail */ "./resources/js/components/TaskDetail.js");
+/* harmony import */ var _components_AddTask__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/AddTask */ "./resources/js/components/AddTask.js");
+
 
 
 
@@ -70398,7 +70400,9 @@ function Index() {
     to: "/"
   }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
     to: "/task"
-  }, "task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+  }, "task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+    to: "/add-task"
+  }, "Add Task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
     path: "/",
     exact: true,
     component: _components_Example__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -70412,6 +70416,10 @@ function Index() {
     render: function render(props) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_TaskDetail__WEBPACK_IMPORTED_MODULE_5__["default"], props);
     }
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+    path: "/add-task",
+    exact: true,
+    component: _components_AddTask__WEBPACK_IMPORTED_MODULE_6__["default"]
   }))));
 }
 
@@ -70491,6 +70499,101 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/AddTask.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/AddTask.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+function AddTask() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      taskName = _useState2[0],
+      setTaskName = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      taskBody = _useState4[0],
+      setTaskBody = _useState4[1];
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    console.log("task name", taskName);
+    var tasks = {
+      name: taskName,
+      body: taskBody
+    };
+    console.log("tasks", tasks);
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/task", {
+      name: taskName,
+      body: taskBody
+    }).then(function (res) {
+      console.log(res);
+      console.log(res.data);
+    });
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row justify-content-center"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-8"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-header"
+  }, "Add a new task"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card-body"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    name: "taskName",
+    onChange: function onChange(e) {
+      return setTaskName(e.target.value);
+    },
+    placeholder: "Enter task name"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    name: "taskBody",
+    onChange: function onChange(e) {
+      return setTaskBody(e.target.value);
+    },
+    placeholder: "Enter task content"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "submit"
+  }, "Submit"))))))));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (AddTask);
+
+if (document.getElementById('example')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(AddTask, null), document.getElementById('example'));
+}
 
 /***/ }),
 
@@ -70685,7 +70788,6 @@ function TaskDetail(props) {
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/task/" + props.match.params.id).then(function (response) {
       if (mounted) {
         setTasks(response.data);
-        console.log("tasks.length in axios: ", tasks.length);
       }
     })["catch"](function (errors) {
       console.log(errors);
@@ -70700,7 +70802,6 @@ function TaskDetail(props) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, " No data... ");
   }
 
-  console.log("tasks.length outside axios", tasks.length);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, " ", tasks.task_name, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, " ", tasks.task_body, " "));
 }
 

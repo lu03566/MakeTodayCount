@@ -16,7 +16,6 @@ function TaskDetail(props) {
             .then(response=>{
                 if (mounted) {
                     setTasks(response.data);
-                    console.log("tasks.length in axios: ",tasks.length);
                 }
             })
             .catch(errors => {
@@ -35,7 +34,6 @@ function TaskDetail(props) {
         console.log("no data");
         return <div> No data... </div>;
     } 
-        console.log("tasks.length outside axios",tasks.length)
         return (
         <div>    
             <h1> {tasks.task_name} </h1>
