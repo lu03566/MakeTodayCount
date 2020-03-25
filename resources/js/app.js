@@ -12,7 +12,14 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// require('./components/Example');
 //require('./components/Task');
+//require('./routing');
 
-require('./Index');
+import React from 'react';
+import { render } from 'react-dom';
+import { Router, Route, browserHistory } from 'react-router';
+
+import Routing from './routing';
+
+render(<Routing />, document.getElementById('example'));
+

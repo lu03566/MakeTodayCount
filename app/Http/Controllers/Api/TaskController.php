@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Task;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class TaskController extends Controller
 {
@@ -13,10 +15,11 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
-        $tasks = Task::all();
-
+        $tasks = Task::where('email', Auth::user()->email)->get();
         return response()->json($tasks);
     }
 
@@ -43,7 +46,7 @@ class TaskController extends Controller
 
         $task->task_name = $request->name;
         $task->task_body = $request->body;
-        $task->email = "lu.03566@gmail.com";
+        $task->email = Auth::user()->email;
         $task->save();
 
     }
@@ -56,8 +59,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $taskDetail = Task::where('id',$id)
-                          ->where('email','lu.03566@gmail.com')->first();
+        $taskDetail = Task::where('id',$id)->first();
         if($taskDetail)
         {
             return response()->json($taskDetail);
@@ -96,5 +98,10 @@ class TaskController extends Controller
     public function destroy($id)
     {
         //
+        $item = Task::find($id);
+        $item->delete();
+
+        return response()->json('Successfully Deleted');
     }
+
 }
